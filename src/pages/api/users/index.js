@@ -21,7 +21,7 @@ const handler = nc({
     }
   })
   .post(async(req, res) => {
-    const { nama, email, telepon, kelahiran, kelurahan, kecamatan, kota } = req.body
+    const { nama, email, telepon, kelahiran, kelurahan, kecamatan, kota, timestamps } = req.body
     const newUser = new UserModel({nama, email, telepon, kelahiran, kelurahan, kecamatan, kota})
     try{
         await newUser.save();
