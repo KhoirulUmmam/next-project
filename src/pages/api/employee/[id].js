@@ -1,14 +1,14 @@
 import nc from 'next-connect';
 import onError from '../../../common/errormiddleware';
 import {
-    getEmployeeById,
-    deleteEmployeeById,
-    updateEmployee,
-} from '../../../controller/employee/employee';
+    getSteakById,
+    deleteSteakById,
+    updateSteak,
+} from '../../../controller/steak/steak';
 
 const handler = nc(onError);
-handler.get(getEmployeeById);
-handler.put(updateEmployee);
-handler.delete(deleteEmployeeById);
+handler.get(getSteakById);
+handler.put(updateSteak);
+handler.delete(deleteSteakById);
 
 export default handler;
