@@ -3,7 +3,7 @@ import employeeValidation from '../../common/employeeValidator';
 import ErrorHandler from '../../common/errorHandler';
 import next from 'next';
 
-const getAllEmployee = async (req, res) => {
+const getAllEmployees = async (req, res) => {
     try {
        console.log("all the employees");
        let employeeData = await executeQuery("select * from employees", []);
@@ -92,7 +92,7 @@ const deleteEmployeeById = async (req, res) => {
 };
 
 export {
-    getAllEmployee,
+    getAllEmployees,
     getEmployeeById,
     saveEmployee,
     updateEmployee,
