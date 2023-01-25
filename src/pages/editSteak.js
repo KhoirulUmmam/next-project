@@ -1,9 +1,11 @@
 import axios from 'axios';
 import { useRouter } from "next/router";
-import React, { useState } from "react";
-import styles from '../styles/AddSteak.module.css';
+import React, { useState, useEffect } from "react";
+import Link from "next/link";
+import styles from '../styles/UpdateSteak.module.css';
 
-export default function AddSteak(){
+export default function EditSteak({ steakUpdateData}){
+    console.log("steakId", steakUpdateData);
     const router = useRouter();
     const [addSteak, setSteak] = useState({
         s_name: "" ,
@@ -13,11 +15,15 @@ export default function AddSteak(){
         s_district: "" ,
         s_city: "" ,
     });
+    useEffect(() => {
+        setSteak(steakUpdateData[0]);
+    }, [steakUpdateData]);
 
     const onSubmit = async (e) => {
-        e.preventDefault();
-        let data = await axios.post(`http://localhost/api/steak`, addSteak)
-    
+            e.preventDefault();
+            let data = await axios.put(
+                `http://localhost/api/steak${steakUpdateData[0].s_id}`, addSteak
+        );
         if (data.data) router.push("/");
         setSteak({
             s_name: "" ,
@@ -107,7 +113,10 @@ export default function AddSteak(){
                         />
                     </div>
                     <div>
-                        <button type='submit'> Submit</button>
+                        <button type="submit" className={styles.button}> Submit</button>
+                        <button className={styles.button}>
+                            <Link href={`/`}>Go Back</Link>
+                        </button>
                     </div>
                 </form>
             </div>
